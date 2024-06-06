@@ -1,4 +1,4 @@
-from libary import Libary
+from library import Library
 from book import Book
 library = Library()
 
@@ -13,13 +13,37 @@ if unos =="1":
         book = Book(naziv, autor, god_izdanja, zanr)
         library.dodaj_knjigu(book)
         code = input("Ako zelite da prekinete upis knjiga pritisnite x ako ne bilo sta drugo")
+       
+        with open("fajl.txt", "a") as file:
+            for object in library.lista_objekata:
+                file.write(object.display_info() + "\n")
+
         if code == "x":
             break
     
-    with open("fajl.txt", "a") as file:
-        for object in library.lista_objekata:
-            file.write(object.display_info() + "\n")
 
+
+elif unos == "3":
+    print("Napisi informacije o knjizi koju zelite da izmenite.")
+    naziv = input("Naziv: ")
+    autor = input("Autor: ")
+    god_izdanja = input("Godina izdanja: ")
+    zanr = input("Zanr: ")
+    book = Book(naziv, autor, god_izdanja, zanr)
+
+    print("Napisi informacije o izmenjenoj knjizi.")
+    naziv1 = input("Naziv: ")
+    autor1 = input("Autor: ")
+    god_izdanja1 = input("Godina izdanja: ")
+    zanr1 = input("Zanr: ")
+    book1 = Book(naziv1, autor1, god_izdanja1, zanr1)
+
+    with open("fajl.txt", "r") as file:
+        lines = file.readlines()
+    
+    lines = [book1.display_info() + '\n' if book.display_info() in line else line for line in lines]
+    with open("fajl.txt", "w") as file:
+        file.writelines(lines)
 
     
 
