@@ -1,7 +1,9 @@
+import os
 from library import Library
 from book import Book
 library = Library()
-
+file_path = "fajl.txt"
+temp_file_path = "fajltemp.txt"
 unos = input("Sta zelite da radite (1-Za dodavanje knjige, 2-Za brisanje knjige, 3-Za menjanje informacija o knjigama, 4-Za prikaz svih knjiga): ")
 if unos =="1":
     while True:
@@ -21,7 +23,21 @@ if unos =="1":
         if code == "x":
             break
     
-
+elif unos == "2":
+    print("NAPIŠITE ODGOVARAJUĆE INFORMACIJE KNJIGE KOJU ŽELITE DA OBRIŠETE")
+    naslov = input("NASLOV: ")
+    autor = input("AUTOR: ")
+    godina_izdavanja = input("GODINA IZDAVANJA: ")
+    žanr = input("ŽANR: ")
+    knjiga = Book(naslov, autor, godina_izdavanja, žanr)
+    with open("fajl.txt", "r") as file:
+        lines = file.readlines()
+            
+    with open("fajltemp.txt", "w") as temp_file:
+        for line in lines:
+            if line.strip() != knjiga.display_info().strip():
+                temp_file.write(line)
+    os.replace(temp_file_path, file_path)
 
 elif unos == "3":
     print("Napisi informacije o knjizi koju zelite da izmenite.")
