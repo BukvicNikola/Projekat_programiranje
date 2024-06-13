@@ -6,4 +6,4 @@ class Book:
         self.zanr = zanr
 
     def __str__(self):
-        return f' {self.naslov} by {self.autor}, godine: {self.godina_izdanja}, zanra: {self.zanr}'
+        return f' {self.naslov} od {self.autor}, godine: {self.godina_izdanja}, zanra: {self.zanr}'

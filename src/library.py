@@ -23,11 +23,11 @@ class Library:
 
     def Prikazi_knjigu(self):
         for book in self.books:
-            print(book.display_info)
+            print(book.__str__)
 
     def Pretrazi_knjigu(self, kriterijum, uslov):
         lista = []
-        with open("listaknjiga.txt", "r") as file:
+        with open("fajl.txt", "r") as file:
             for line in file:
                 book_data = line.strip().split(", ")
                 if kriterijum.lower() == "naslov" and uslov.lower() in book_data[0].lower():

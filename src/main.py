@@ -13,12 +13,12 @@ if unos =="1":
         god_izdanja = input("Godina izdanja: ")
         zanr = input("Zanr: ")
         book = Book(naziv, autor, god_izdanja, zanr)
-        library.dodaj_knjigu(book)
+        library.add_book(book)
         code = input("Ako zelite da prekinete upis knjiga pritisnite x ako ne bilo sta drugo")
        
         with open("fajl.txt", "a") as file:
-            for object in library.lista_objekata:
-                file.write(object.display_info() + "\n")
+            for object in library.books:
+                file.write(object.__str__() + "\n")
 
         if code == "x":
             break
@@ -35,7 +35,7 @@ elif unos == "2":
             
     with open("fajltemp.txt", "w") as temp_file:
         for line in lines:
-            if line.strip() != knjiga.display_info().strip():
+            if line.strip() != knjiga.__str__().strip():
                 temp_file.write(line)
     os.replace(temp_file_path, file_path)
 
@@ -57,7 +57,7 @@ elif unos == "3":
     with open("fajl.txt", "r") as file:
         lines = file.readlines()
     
-    lines = [book1.display_info() + '\n' if book.display_info() in line else line for line in lines]
+    lines = [book1.__str__() + '\n' if book.__str__() in line else line for line in lines]
     with open("fajl.txt", "w") as file:
         file.writelines(lines)
 
@@ -66,7 +66,7 @@ elif unos == "3":
 elif unos == "4":
     kriterjum = input("Po cemu zelite da pretrazujete knjige: ")
     key_word = input("Kljucna rec za pretragu: ")
-    results = library.search_books(kriterjum, key_word)
+    results = library.Pretrazi_knjigu(kriterjum, key_word)
     print("Rezultati pretrage: ")
     for result in results:
         print(result)
