@@ -1,29 +1,27 @@
 import unittest
-import sys
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
-from book import Book
+from book import Book  # Assuming your Book class is defined in a file named book.py
 
-class Test_Book(unittest.TestCase):
-    def test_dodavanje_naslova(self):
-        b = Book("Bela griva", " ", 1959, " ")
-        self.assertEqual(b.naziv, "Bela griva")
+class TestBook(unittest.TestCase):
+    def test_book_creation(self):
+        naslov = "Test Book"
+        autor = "Test Autor"
+        godina_izdanja = "1576"
+        zanr = "roman"
+        book = Book(naslov, autor, godina_izdanja, zanr)
+        self.assertEqual(book.naslov, naslov)
+        self.assertEqual(book.autor, autor)
+        self.assertEqual(book.godina_izdanja, godina_izdanja)
+        self.assertEqual(book.zanr, zanr)
 
-    def test_dodavanje_autora(self):
-        b = Book("Bela griva", "Rene Gijo", 1959, " ")
-        self.assertEqual(b.autor, "Rene Gijo")
-    
-    def test_dodavanje_godine_izdanja(self):
-        b = Book("Bela griva", "Rene Gijo", 1959, " ")
-        self.assertEqual(b.god_izdanja, 1959)
 
-    def test_dodavanje_zanra(self):
-        b = Book("Bela griva", "Rene Gijo", 1959, "Roman")
-        self.assertEqual(b.zanr, "Roman")
-        
-    def test_displayinfo(self):
-        b = Book("d", "d", 1959, "d")
-        self.assertEqual(b.display_info(), "d, d, 1959, d")
+    def test_book_str_method(self):
+        naslov = "Test Book"
+        autor = "Test Author"
+        godina_izdanja = "1576"
+        zanr = "roman"
+        expected_output = f"Book: {naslov} by {autor}, Godina izdanja: {godina_izdanja}, Zanr: {zanr}"
+        book = Book(naslov, autor, godina_izdanja, zanr)
+        self.assertEqual(str(book), expected_output)
 
 if __name__ == '__main__':
-   unittest.main()
+    unittest.main()

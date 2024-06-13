@@ -1,9 +1,9 @@
 class Book:
-    def __init__(self, naziv, autor, god_izdanja, zanr):
-        self.naziv = naziv
+    def __init__(self, naslov, autor, godina_izdanja, zanr):
+        self.naslov = naslov
         self.autor = autor
-        self.god_izdanja = god_izdanja
+        self.godina_izdanja = godina_izdanja
         self.zanr = zanr
-        
-    def display_info(self):
-        return f'{self.naziv}, {self.autor}, {self.god_izdanja}, {self.zanr}'
+
+    def __str__(self):
+        return f' {self.naslov} by {self.autor}, godine: {self.godina_izdanja}, zanra: {self.zanr}'
